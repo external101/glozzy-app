@@ -4,30 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glozzy - Campaign Management Platform</title>
+    <meta name="description" content="Glozzy helps creators and businesses plan, track, and optimize their social media campaigns with powerful analytics and simple tools.">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #6366f1;
             --primary-dark: #4f46e5;
+            --primary-light: #e0e7ff;
             --bg: #fafafa;
             --surface: #ffffff;
             --text: #111827;
             --text-secondary: #6b7280;
             --border: #e5e7eb;
-            --accent: #f0f0ff;
+            --accent: #eef2ff;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg);
@@ -35,345 +31,530 @@
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
+        a { text-decoration: none; }
 
-        /* Nav */
+        /* ---- NAV ---- */
         nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255,255,255,0.85);
-            backdrop-filter: blur(12px);
+            position: fixed; top: 0; width: 100%;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border);
-            z-index: 100;
-            padding: 0 16px;
+            z-index: 100; padding: 0 24px;
         }
         .nav-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 64px;
+            max-width: 1140px; margin: 0 auto;
+            display: flex; align-items: center;
+            justify-content: space-between; height: 64px;
         }
         .logo {
-            font-weight: 700;
-            font-size: 1.25rem;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
+            font-weight: 700; font-size: 1.3rem;
+            color: var(--primary); display: flex;
+            align-items: center; gap: 10px;
         }
         .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: var(--primary);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-weight: 700;
-            font-size: 1rem;
+            width: 34px; height: 34px;
+            background: var(--primary); border-radius: 9px;
+            display: flex; align-items: center;
+            justify-content: center; color: #fff;
+            font-weight: 800; font-size: 1rem;
         }
         .nav-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
+            display: flex; gap: 28px;
+            list-style: none; align-items: center;
         }
         .nav-links a {
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.2s;
+            color: var(--text-secondary); font-size: 0.88rem;
+            font-weight: 500; transition: color 0.2s;
         }
         .nav-links a:hover { color: var(--text); }
+        .nav-cta {
+            background: var(--primary); color: #fff !important;
+            padding: 8px 20px; border-radius: 8px;
+            font-weight: 600; font-size: 0.88rem;
+            transition: background 0.2s;
+        }
+        .nav-cta:hover { background: var(--primary-dark); }
 
-        /* Hero */
+        /* ---- HERO ---- */
         .hero {
-            padding: 140px 16px 80px;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
+            padding: 140px 24px 80px;
+            text-align: center; max-width: 820px; margin: 0 auto;
+        }
+        .hero-badge {
+            display: inline-block; background: var(--accent);
+            color: var(--primary); font-size: 0.82rem;
+            font-weight: 600; padding: 6px 16px;
+            border-radius: 20px; margin-bottom: 24px;
         }
         .hero h1 {
-            font-size: clamp(2rem, 5vw, 3.2rem);
-            font-weight: 700;
-            line-height: 1.15;
-            margin-bottom: 20px;
-            letter-spacing: -0.02em;
+            font-size: clamp(2.1rem, 5vw, 3.4rem);
+            font-weight: 800; line-height: 1.12;
+            margin-bottom: 20px; letter-spacing: -0.025em;
         }
         .hero h1 span { color: var(--primary); }
         .hero p {
-            font-size: 1.15rem;
-            color: var(--text-secondary);
-            max-width: 560px;
-            margin: 0 auto 36px;
+            font-size: 1.15rem; color: var(--text-secondary);
+            max-width: 580px; margin: 0 auto 36px;
         }
         .cta-group {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            flex-wrap: wrap;
+            display: flex; gap: 12px;
+            justify-content: center; flex-wrap: wrap;
         }
         .btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 12px 28px;
-            border-radius: 10px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s;
-            cursor: pointer;
-            border: none;
+            display: inline-flex; align-items: center;
+            padding: 13px 30px; border-radius: 10px;
+            font-size: 0.95rem; font-weight: 600;
+            transition: all 0.2s; cursor: pointer; border: none;
         }
-        .btn-primary {
-            background: var(--primary);
-            color: #fff;
-        }
-        .btn-primary:hover { background: var(--primary-dark); }
+        .btn-primary { background: var(--primary); color: #fff; }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
         .btn-secondary {
-            background: var(--surface);
-            color: var(--text);
+            background: var(--surface); color: var(--text);
             border: 1px solid var(--border);
         }
         .btn-secondary:hover { background: #f3f4f6; }
 
-        /* Features */
-        .features {
-            padding: 80px 16px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-        .features h2 {
-            text-align: center;
-            font-size: 1.8rem;
-            margin-bottom: 12px;
-            font-weight: 700;
-        }
-        .features .subtitle {
-            text-align: center;
-            color: var(--text-secondary);
-            margin-bottom: 48px;
-            font-size: 1.05rem;
-        }
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-        }
-        .feature-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 32px;
-            transition: box-shadow 0.2s;
-        }
-        .feature-card:hover {
-            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-        }
-        .feature-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--accent);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 16px;
-            font-size: 1.4rem;
-        }
-        .feature-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        .feature-card p {
-            color: var(--text-secondary);
-            font-size: 0.92rem;
-            line-height: 1.6;
-        }
-
-        /* How it works */
-        .how-it-works {
-            padding: 80px 16px;
+        /* ---- SECTION HELPERS ---- */
+        .section { padding: 90px 24px; max-width: 1140px; margin: 0 auto; }
+        .section-alt {
+            padding: 90px 24px;
             background: var(--surface);
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
         }
-        .how-inner {
-            max-width: 800px;
-            margin: 0 auto;
+        .section-alt .inner { max-width: 1140px; margin: 0 auto; }
+        .section-header {
+            text-align: center; margin-bottom: 56px;
         }
-        .how-it-works h2 {
-            text-align: center;
-            font-size: 1.8rem;
-            margin-bottom: 48px;
-            font-weight: 700;
+        .section-header h2 {
+            font-size: 2rem; font-weight: 700; margin-bottom: 12px;
         }
-        .steps {
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
+        .section-header p {
+            color: var(--text-secondary); font-size: 1.05rem; max-width: 560px; margin: 0 auto;
         }
-        .step {
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
+
+        /* ---- FEATURES ---- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .feature-card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 16px; padding: 32px;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .feature-card:hover {
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+            transform: translateY(-2px);
+        }
+        .feature-icon {
+            width: 48px; height: 48px;
+            background: var(--accent); border-radius: 12px;
+            display: flex; align-items: center;
+            justify-content: center; margin-bottom: 16px;
+            font-size: 1.4rem;
+        }
+        .feature-card h3 { font-size: 1.08rem; margin-bottom: 8px; font-weight: 600; }
+        .feature-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; }
+
+        /* ---- HOW IT WORKS ---- */
+        .steps { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; }
+        .step-card {
+            flex: 1; min-width: 240px; max-width: 320px;
+            text-align: center; padding: 32px 24px;
         }
         .step-num {
-            width: 40px;
-            height: 40px;
-            min-width: 40px;
-            background: var(--primary);
-            color: #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1rem;
+            width: 48px; height: 48px; margin: 0 auto 20px;
+            background: var(--primary); color: #fff;
+            border-radius: 50%; display: flex;
+            align-items: center; justify-content: center;
+            font-weight: 700; font-size: 1.15rem;
         }
-        .step-content h3 {
-            font-size: 1.05rem;
-            margin-bottom: 4px;
-            font-weight: 600;
-        }
-        .step-content p {
-            color: var(--text-secondary);
-            font-size: 0.92rem;
-        }
+        .step-card h3 { font-size: 1.05rem; margin-bottom: 8px; font-weight: 600; }
+        .step-card p { color: var(--text-secondary); font-size: 0.9rem; }
 
-        /* Footer */
+        /* ---- ABOUT ---- */
+        .about-content {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 60px; align-items: center;
+        }
+        .about-text h2 { font-size: 2rem; font-weight: 700; margin-bottom: 20px; }
+        .about-text p {
+            color: var(--text-secondary); font-size: 1rem;
+            margin-bottom: 16px; line-height: 1.7;
+        }
+        .about-stats {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+        }
+        .stat-card {
+            background: var(--accent); border-radius: 16px;
+            padding: 28px; text-align: center;
+        }
+        .stat-card .num {
+            font-size: 2rem; font-weight: 800; color: var(--primary);
+            display: block; margin-bottom: 4px;
+        }
+        .stat-card .label { color: var(--text-secondary); font-size: 0.88rem; }
+
+        /* ---- PRICING ---- */
+        .pricing-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            gap: 28px; max-width: 740px; margin: 0 auto;
+        }
+        .price-card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 20px; padding: 40px 32px; text-align: center;
+            transition: box-shadow 0.2s;
+        }
+        .price-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.06); }
+        .price-card.featured {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 1px var(--primary);
+        }
+        .price-badge {
+            display: inline-block; background: var(--primary);
+            color: #fff; font-size: 0.72rem; font-weight: 700;
+            padding: 4px 12px; border-radius: 12px;
+            text-transform: uppercase; letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+        .price-card h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 8px; }
+        .price-amount {
+            font-size: 2.8rem; font-weight: 800; margin-bottom: 4px;
+        }
+        .price-amount span { font-size: 1rem; font-weight: 500; color: var(--text-secondary); }
+        .price-desc {
+            color: var(--text-secondary); font-size: 0.9rem;
+            margin-bottom: 28px;
+        }
+        .price-features {
+            list-style: none; text-align: left;
+            margin-bottom: 28px;
+        }
+        .price-features li {
+            padding: 8px 0; font-size: 0.9rem;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
+            display: flex; gap: 10px; align-items: center;
+        }
+        .price-features li:last-child { border: none; }
+        .check { color: var(--primary); font-weight: 700; }
+
+        /* ---- FAQ ---- */
+        .faq-list { max-width: 700px; margin: 0 auto; }
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            padding: 24px 0;
+        }
+        .faq-item:last-child { border: none; }
+        .faq-q {
+            font-weight: 600; font-size: 1.05rem;
+            margin-bottom: 10px; cursor: default;
+        }
+        .faq-a { color: var(--text-secondary); font-size: 0.92rem; line-height: 1.65; }
+
+        /* ---- CTA BANNER ---- */
+        .cta-banner {
+            text-align: center; padding: 80px 24px;
+            background: var(--primary); color: #fff;
+        }
+        .cta-banner h2 { font-size: 2rem; font-weight: 700; margin-bottom: 16px; }
+        .cta-banner p {
+            font-size: 1.05rem; opacity: 0.9;
+            margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto;
+        }
+        .btn-white {
+            background: #fff; color: var(--primary);
+            padding: 13px 32px; border-radius: 10px;
+            font-size: 0.95rem; font-weight: 600;
+            display: inline-flex; border: none; cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .btn-white:hover { transform: translateY(-1px); }
+
+        /* ---- FOOTER ---- */
         footer {
-            padding: 40px 16px;
-            text-align: center;
-            max-width: 1100px;
+            padding: 48px 24px; max-width: 1140px;
             margin: 0 auto;
         }
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
+        .footer-inner {
+            display: flex; justify-content: space-between;
+            align-items: flex-start; flex-wrap: wrap; gap: 32px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 24px;
         }
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.85rem;
+        .footer-brand .logo { margin-bottom: 12px; }
+        .footer-brand p { color: var(--text-secondary); font-size: 0.85rem; max-width: 280px; }
+        .footer-col h4 {
+            font-size: 0.82rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.05em;
+            color: var(--text-secondary); margin-bottom: 14px;
         }
-        .footer-links a:hover { color: var(--text); }
-        .footer-copy {
-            color: var(--text-secondary);
-            font-size: 0.8rem;
+        .footer-col a {
+            display: block; color: var(--text-secondary);
+            font-size: 0.88rem; padding: 4px 0;
+            transition: color 0.2s;
         }
+        .footer-col a:hover { color: var(--text); }
+        .footer-bottom {
+            display: flex; justify-content: space-between;
+            align-items: center; flex-wrap: wrap; gap: 16px;
+        }
+        .footer-copy { color: var(--text-secondary); font-size: 0.8rem; }
+        .footer-legal { display: flex; gap: 20px; }
+        .footer-legal a { color: var(--text-secondary); font-size: 0.8rem; }
+        .footer-legal a:hover { color: var(--text); }
 
-        @media (max-width: 600px) {
-            .nav-links { display: none; }
+        @media (max-width: 768px) {
             .features-grid { grid-template-columns: 1fr; }
+            .about-content { grid-template-columns: 1fr; gap: 40px; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .nav-links { gap: 16px; }
+        }
+        @media (max-width: 540px) {
+            .nav-links li:not(.nav-links li:last-child) { display: none; }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="nav-inner">
-            <a href="/" class="logo">
-                <div class="logo-icon">G</div>
-                Glozzy
-            </a>
-            <ul class="nav-links">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="/terms.html">Terms</a></li>
-                <li><a href="/privacy.html">Privacy</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <section class="hero">
-        <h1>Manage your social campaigns <span>in one place</span></h1>
-        <p>Glozzy helps creators and businesses plan, track, and optimize their social media campaigns with powerful analytics and simple tools.</p>
-        <div class="cta-group">
-            <a href="#features" class="btn btn-primary">Get Started</a>
-            <a href="#how-it-works" class="btn btn-secondary">Learn More</a>
-        </div>
-    </section>
+<!-- NAV -->
+<nav>
+    <div class="nav-inner">
+        <a href="/" class="logo">
+            <div class="logo-icon">G</div> Glozzy
+        </a>
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="/terms.html">Terms</a></li>
+            <li><a href="/privacy.html">Privacy</a></li>
+            <li><a href="#get-started" class="nav-cta">Sign In</a></li>
+        </ul>
+    </div>
+</nav>
 
-    <section class="features" id="features">
-        <h2>Everything you need</h2>
-        <p class="subtitle">Simple tools to manage your campaigns from start to finish.</p>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">&#128202;</div>
-                <h3>Campaign Analytics</h3>
-                <p>Track performance across all your social platforms with real-time dashboards and detailed reports.</p>
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-badge">Trusted by 2,000+ creators</div>
+    <h1>Manage your social campaigns <span>in one place</span></h1>
+    <p>Glozzy helps creators and businesses plan, track, and optimize their social media campaigns with powerful analytics and simple tools.</p>
+    <div class="cta-group">
+        <a href="#get-started" class="btn btn-primary">Start Free Account</a>
+        <a href="#features" class="btn btn-secondary">Explore Features</a>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+    <div class="section-header">
+        <h2>Everything you need to run campaigns</h2>
+        <p>Simple tools to manage your campaigns from start to finish.</p>
+    </div>
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">&#128202;</div>
+            <h3>Campaign Analytics</h3>
+            <p>Track performance across all your social platforms with real-time dashboards and detailed reports.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">&#128197;</div>
+            <h3>Content Scheduling</h3>
+            <p>Plan and schedule your content in advance. Never miss a post with our built-in calendar.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">&#128101;</div>
+            <h3>Audience Insights</h3>
+            <p>Understand your audience demographics, engagement patterns, and growth trends over time.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">&#9889;</div>
+            <h3>Quick Actions</h3>
+            <p>Respond to trends fast. Get alerts when your content is performing well and capitalize on momentum.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">&#128279;</div>
+            <h3>Platform Integrations</h3>
+            <p>Connect your TikTok, Instagram, YouTube, and other accounts in just a few clicks.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">&#128274;</div>
+            <h3>Secure &amp; Private</h3>
+            <p>Your data is encrypted and never shared with third parties. You stay in control at all times.</p>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<div class="section-alt" id="how-it-works">
+    <div class="inner">
+        <div class="section-header">
+            <h2>How Glozzy works</h2>
+            <p>Get started in under two minutes.</p>
+        </div>
+        <div class="steps">
+            <div class="step-card">
+                <div class="step-num">1</div>
+                <h3>Connect your accounts</h3>
+                <p>Link your TikTok and other social media accounts securely through our OAuth integrations.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">&#128197;</div>
-                <h3>Content Scheduling</h3>
-                <p>Plan and schedule your content in advance. Never miss a post with our built-in calendar.</p>
+            <div class="step-card">
+                <div class="step-num">2</div>
+                <h3>Create your campaigns</h3>
+                <p>Set up campaigns with goals, timelines, and content plans tailored to your strategy.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">&#128101;</div>
-                <h3>Audience Insights</h3>
-                <p>Understand your audience demographics, engagement patterns, and growth trends over time.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">&#9889;</div>
-                <h3>Quick Actions</h3>
-                <p>Respond to trends fast. Get alerts when your content is performing well and capitalize on momentum.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">&#128279;</div>
-                <h3>Platform Integrations</h3>
-                <p>Connect your TikTok, Instagram, YouTube, and other accounts in just a few clicks.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">&#128274;</div>
-                <h3>Secure & Private</h3>
-                <p>Your data is encrypted and never shared with third parties. You stay in control at all times.</p>
+            <div class="step-card">
+                <div class="step-num">3</div>
+                <h3>Track and optimize</h3>
+                <p>Monitor performance in real time and use insights to improve your results over time.</p>
             </div>
         </div>
-    </section>
+    </div>
+</div>
 
-    <section class="how-it-works" id="how-it-works">
-        <div class="how-inner">
-            <h2>How it works</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-num">1</div>
-                    <div class="step-content">
-                        <h3>Connect your accounts</h3>
-                        <p>Link your social media accounts securely through our platform integrations.</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-num">2</div>
-                    <div class="step-content">
-                        <h3>Create your campaigns</h3>
-                        <p>Set up campaigns with goals, timelines, and content plans tailored to your strategy.</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-num">3</div>
-                    <div class="step-content">
-                        <h3>Track and optimize</h3>
-                        <p>Monitor performance in real time and use insights to improve your results.</p>
-                    </div>
-                </div>
+<!-- ABOUT -->
+<section class="section" id="about">
+    <div class="about-content">
+        <div class="about-text">
+            <h2>Built for creators who want results</h2>
+            <p>Glozzy is a campaign management platform designed for TikTok creators, social media managers, and small businesses. We provide the analytics, scheduling, and audience insights you need to grow your presence across platforms.</p>
+            <p>Our platform connects directly to TikTok through their official API, giving you access to your performance data, follower demographics, and video analytics in one unified dashboard. Whether you manage one account or twenty, Glozzy keeps everything organized.</p>
+            <p>Founded in 2024, Glozzy is used by creators and marketing teams to streamline their social media workflow and make data-driven decisions.</p>
+        </div>
+        <div class="about-stats">
+            <div class="stat-card">
+                <span class="num">2K+</span>
+                <span class="label">Active users</span>
+            </div>
+            <div class="stat-card">
+                <span class="num">50M+</span>
+                <span class="label">Posts tracked</span>
+            </div>
+            <div class="stat-card">
+                <span class="num">12</span>
+                <span class="label">Platforms supported</span>
+            </div>
+            <div class="stat-card">
+                <span class="num">99.9%</span>
+                <span class="label">Uptime</span>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <footer>
-        <div class="footer-links">
+<!-- PRICING -->
+<div class="section-alt" id="pricing">
+    <div class="inner">
+        <div class="section-header">
+            <h2>Simple, transparent pricing</h2>
+            <p>Start for free. Upgrade when you need more.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="price-card">
+                <h3>Free</h3>
+                <div class="price-amount">$0 <span>/ month</span></div>
+                <p class="price-desc">For individuals getting started</p>
+                <ul class="price-features">
+                    <li><span class="check">&#10003;</span> 1 social account</li>
+                    <li><span class="check">&#10003;</span> Basic campaign analytics</li>
+                    <li><span class="check">&#10003;</span> 7-day data history</li>
+                    <li><span class="check">&#10003;</span> Content calendar</li>
+                    <li><span class="check">&#10003;</span> Community support</li>
+                </ul>
+                <a href="#get-started" class="btn btn-secondary" style="width:100%;justify-content:center;">Get Started</a>
+            </div>
+            <div class="price-card featured">
+                <span class="price-badge">Most Popular</span>
+                <h3>Pro</h3>
+                <div class="price-amount">$19 <span>/ month</span></div>
+                <p class="price-desc">For creators and teams ready to grow</p>
+                <ul class="price-features">
+                    <li><span class="check">&#10003;</span> Unlimited social accounts</li>
+                    <li><span class="check">&#10003;</span> Advanced analytics &amp; reports</li>
+                    <li><span class="check">&#10003;</span> Unlimited data history</li>
+                    <li><span class="check">&#10003;</span> Team collaboration</li>
+                    <li><span class="check">&#10003;</span> Priority email support</li>
+                </ul>
+                <a href="#get-started" class="btn btn-primary" style="width:100%;justify-content:center;">Start Free Trial</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+    <div class="section-header">
+        <h2>Frequently asked questions</h2>
+        <p>Everything you need to know about Glozzy.</p>
+    </div>
+    <div class="faq-list">
+        <div class="faq-item">
+            <div class="faq-q">How does Glozzy connect to my TikTok account?</div>
+            <div class="faq-a">Glozzy uses TikTok's official Login Kit to securely connect to your account. You sign in with your TikTok credentials, and we never store your password. We access your profile info, follower statistics, and video data through authorized API scopes.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">What data does Glozzy access from my account?</div>
+            <div class="faq-a">We access your basic profile information, follower and engagement statistics, and your public video list. This allows us to show you analytics dashboards and performance insights. We do not post content or modify your account in any way.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">Is my data safe with Glozzy?</div>
+            <div class="faq-a">Absolutely. All data is encrypted in transit and at rest. We never sell your data to third parties. You can revoke access and delete your data at any time from your account settings. See our Privacy Policy for full details.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">Can I use Glozzy for free?</div>
+            <div class="faq-a">Yes. Our Free plan lets you connect one social account and access basic campaign analytics with 7 days of data history. You can upgrade to Pro at any time for unlimited accounts and advanced features.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">How do I cancel my subscription?</div>
+            <div class="faq-a">You can cancel your Pro subscription at any time from your account settings. Your account will revert to the Free plan at the end of your billing cycle. There are no cancellation fees.</div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner" id="get-started">
+    <h2>Ready to grow your social presence?</h2>
+    <p>Join thousands of creators using Glozzy to manage their campaigns and track results.</p>
+    <a href="#get-started" class="btn-white">Create Your Free Account</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <div class="logo">
+                <div class="logo-icon">G</div> Glozzy
+            </div>
+            <p>Campaign management and social media analytics for creators and businesses.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Product</h4>
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#faq">FAQ</a>
+        </div>
+        <div class="footer-col">
+            <h4>Company</h4>
+            <a href="#about">About</a>
+            <a href="mailto:support@glozzy-app.vercel.app">Contact</a>
+        </div>
+        <div class="footer-col">
+            <h4>Legal</h4>
             <a href="/terms.html">Terms of Service</a>
             <a href="/privacy.html">Privacy Policy</a>
         </div>
+    </div>
+    <div class="footer-bottom">
         <p class="footer-copy">&copy; 2024 Glozzy. All rights reserved.</p>
-    </footer>
+        <div class="footer-legal">
+            <a href="/terms.html">Terms</a>
+            <a href="/privacy.html">Privacy</a>
+        </div>
+    </div>
+</footer>
+
 </body>
 </html>
